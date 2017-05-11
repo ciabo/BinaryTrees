@@ -55,8 +55,9 @@ class Tree:
         if self.root is None:
             self.setRoot(key)
             self.root.setP(None)
+            return self.root
         else:
-            self.insertNode(key, self.root)
+            return self.insertNode(key, self.root)
 
     def insertNode(self, key, currentNode):
         if key <= currentNode.getKey():
