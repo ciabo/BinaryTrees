@@ -82,18 +82,6 @@ class Tree:
                 return currentNode.getRight()
 
 
-
-    #-----------!!!!!!
-    def findNode(self,key, currentNode):
-        if currentNode is None:
-            return False
-        elif key == currentNode.getKey():
-            return True
-        elif key < currentNode.getKey():
-            return self.findNode(currentNode.getLeft(), key)
-        else:
-            return self.findNode(currentNode.getRight(), key)
-
     def inorder(self):
         def _inorder(v):
             if v is None:

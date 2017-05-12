@@ -1,4 +1,5 @@
-class RBNode():
+import ABR
+class RBNode(ABR.Node):
     def __init__(self,key,nil):
         if key==None:
             self.key = "nil"
@@ -19,30 +20,6 @@ class RBNode():
         else:
             return max(self.height(node.left), self.height(node.right)) + 1
 
-    def getKey(self):
-        return self.key
-
-    def setKey(self, key):
-        self.key = key
-
-    def setP(self, p):
-        self.p = p
-
-    def getP(self):
-        return self.p
-
-    def getLeft(self):
-        return self.left
-
-    def setLeft(self,l):
-        self.left=l
-
-    def getRight(self):
-        return self.right
-
-    def setRight(self, r):
-        self.right = r
-
     def getColor(self):
         return self.color
 
@@ -53,7 +30,7 @@ class RBNode():
 
 
 
-class RBTree():
+class RBTree(ABR.Tree):
     def __init__(self):
         self.nil=RBNode(None,None)
         self.nil.setColor("black")
@@ -61,12 +38,6 @@ class RBTree():
 
     def setRoot(self, key):
         self.root = RBNode(key,self.nil)
-
-    def changeRoot(self,node):
-        self.root=node
-
-    def getRoot(self):
-        return self.root
 
     def leftRotation(self, x):
         y=x.getRight()
