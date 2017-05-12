@@ -13,6 +13,12 @@ class RBNode():
             self.p = nil
             self.color="black"
 
+    def height(self,node):
+        if node.key=="nil":
+            return 0
+        else:
+            return max(self.height(node.left), self.height(node.right)) + 1
+
     def getKey(self):
         return self.key
 
@@ -59,6 +65,9 @@ class RBTree():
     def changeRoot(self,node):
         self.root=node
 
+    def getRoot(self):
+        return self.root
+
     def leftRotation(self, x):
         y=x.getRight()
         x.setRight(y.getLeft())
@@ -74,7 +83,7 @@ class RBTree():
         y.setLeft(x)
         x.setP(y)
 
-    def rightRotation(self,x): #se inserisco 3 2 1 la ruotazione ha x=1
+    def rightRotation(self,x):
         y = x.getLeft()
         x.setLeft(y.getRight())
         if y.getRight().getKey() != "nil":
@@ -161,4 +170,6 @@ class RBTree():
             if v.getRight().getKey() != "nil":
                 _inorder(v.getRight())
         _inorder(self.root)
+
+
 

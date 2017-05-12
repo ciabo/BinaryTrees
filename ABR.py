@@ -29,6 +29,12 @@ class Node:
     def setRight(self, r):
         self.right = r
 
+    def height(self,node):
+        if node is None:
+            return 0
+        else:
+            return max(self.height(node.left), self.height(node.right)) + 1
+
     def getChildren(self):
         children = []
         if self.left != None:
@@ -75,8 +81,7 @@ class Tree:
                 currentNode.getRight().setP(currentNode)
                 return currentNode.getRight()
 
-    def find(self, key):
-        return self.findNode(key, self.root)
+
 
     #-----------!!!!!!
     def findNode(self,key, currentNode):
