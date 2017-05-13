@@ -1,33 +1,14 @@
 import ABR
 class RBNode(ABR.Node):
     def __init__(self,key,nil):
-        if key==None:
-            self.key = "nil"
-            self.left = self
-            self.right = self
-            self.p = self
-            self.color = "black"
-        else:
-            self.key=key
-            self.left = nil
-            self.right = nil
-            self.p = nil
-            self.color="black"
-
-    def height(self,node):
-        if node.key=="nil":
-            return 0
-        else:
-            return max(self.height(node.left), self.height(node.right)) + 1
+        super().__init__(key,nil)
+        self.color = "black"
 
     def getColor(self):
         return self.color
 
     def setColor(self,color):
         self.color=color
-
-
-
 
 
 class RBTree(ABR.Tree):

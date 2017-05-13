@@ -3,10 +3,11 @@ import ABR
 import RB
 from timeit import default_timer as timer
 
+
 ranges=[50,100,700]
 randValueList=[random.sample(range(1, 1000), 50) , random.sample(range(1, 1000), 100) , random.sample(range(1, 1000), 700)]
 
-for r in range(0,3):
+for r in range(len(ranges)):
     ABRTree = ABR.Tree()
     ABRTreeRandom = ABR.Tree()
     RBTree = RB.RBTree()

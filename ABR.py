@@ -1,9 +1,15 @@
 class Node:
-    def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
-        self.p = None
+    def __init__(self,key,nil):
+        if key==None:
+            self.key = "nil"
+            self.left = self
+            self.right = self
+            self.p = self
+        else:
+            self.key=key
+            self.left = nil
+            self.right = nil
+            self.p = nil
 
     def getKey(self):
         return self.key
@@ -30,26 +36,19 @@ class Node:
         self.right = r
 
     def height(self,node):
-        if node is None:
+        if node.key=="nil":
             return 0
         else:
             return max(self.height(node.left), self.height(node.right)) + 1
 
-    def getChildren(self):
-        children = []
-        if self.left != None:
-            children.append(self.left)
-        if self.right != None:
-            children.append(self.right)
-        return children
-
 
 class Tree:
     def __init__(self):
-        self.root = None
+        self.nil = Node(None, None)
+        self.root = self.nil
 
     def setRoot(self, key):
-        self.root = Node(key)
+        self.root = Node(key,self.nil)
 
     def changeRoot(self,node):
         self.root=node
@@ -58,38 +57,38 @@ class Tree:
         return self.root
 
     def insert(self, key):
-        if self.root is None:
+        if self.root is self.nil:
             self.setRoot(key)
-            self.root.setP(None)
+            self.root.setP(self.nil)
             return self.root
         else:
             return self.insertNode(key, self.root)
 
     def insertNode(self, key, currentNode):
         if key <= currentNode.getKey():
-            if currentNode.getLeft():
+            if currentNode.getLeft().getKey()!="nil":
                 self.insertNode(key, currentNode.getLeft())
             else:
-                currentNode.setLeft(Node(key))
+                currentNode.setLeft(Node(key,self.nil))
                 currentNode.getLeft().setP(currentNode)
                 return currentNode.getLeft()
         elif key > currentNode.getKey():
-            if currentNode.getRight():
+            if currentNode.getRight().getKey()!="nil":
                 self.insertNode(key, currentNode.getRight())
             else:
-                currentNode.setRight(Node(key))
+                currentNode.setRight(Node(key,self.nil))
                 currentNode.getRight().setP(currentNode)
                 return currentNode.getRight()
 
 
     def inorder(self):
         def _inorder(v):
-            if v is None:
+            if v.getKey() == "nil":
                 return
-            if v.getLeft() is not None:
+            if v.getLeft().getKey() != "nil":
                 _inorder(v.getLeft())
             print(v.getKey())
-            if v.getRight() is not None:
+            if v.getRight().getKey() != "nil":
                 _inorder(v.getRight())
         _inorder(self.root)
 
@@ -102,5 +101,19 @@ class Tree:
         if currentNode:
             return currentNode
         print("Elemento non presente")
+
+    def serialize(self):
+        self.serializeM(self.root)
+
+    def serializeM(self,node):
+            print("",node.getKey(),"(",end="")
+            if(node.getLeft()) is not None:
+                self.serializeM(node.getLeft())
+            else:
+                print("X ,",end="")
+            if (node.getRight()) is not None:
+                self.serializeM(node.getRight())
+            else:
+                print(" X ) ,",end="")
 
 
